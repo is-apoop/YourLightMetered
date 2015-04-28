@@ -1,17 +1,33 @@
 package example.com.yourlightmetered;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
-public class main_view extends ActionBarActivity {
+public class main_view extends Activity {
+
+    private SensorManager sensorManager;
+
+    private TextView textView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_view);
+        textView = (TextView)findViewById(R.id.textView);
+
+
+
+        sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+
+
+        textView.setText(sensorManager.getSensorList(Sensor.TYPE_LIGHT).toString());
     }
 
 
