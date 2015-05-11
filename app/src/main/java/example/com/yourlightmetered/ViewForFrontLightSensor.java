@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 
-public class main_view extends Activity implements SensorEventListener {
+public class ViewForFrontLightSensor extends Activity implements SensorEventListener {
 
     private SensorManager mSensorManager;
     private Sensor mLightSensor;
