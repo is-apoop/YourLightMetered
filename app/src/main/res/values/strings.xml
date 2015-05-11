@@ -8,7 +8,7 @@
 
     <!-- Strings for main activity -->
     <string name="button_start_mesuring_from_camera">REFLECTED MODE MEASURING</string>
-
+    <string name="toast_camera_disabled">There is no accessible camera on your device</string>
 
 
 

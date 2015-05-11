@@ -11,11 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
     public static Boolean camera_works = false;
-    public static int number_of_cameras = 0;
+
 
 
     Button button_start_camera_measurings;
@@ -29,9 +30,7 @@ public class MainActivity extends Activity {
 
         camera_works = checkCameraHardware(MainActivity.this);
 
-        // get number of cameras available
 
-        number_of_cameras = Camera.getNumberOfCameras();
 
 
         //TODO also we will TEST these sensors on workability
@@ -47,8 +46,13 @@ public class MainActivity extends Activity {
         button_start_camera_measurings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ViewForCameraMeasurings.class);
-                startActivity(intent);
+                if (camera_works) {
+                    Intent intent = new Intent(MainActivity.this, ViewForCameraMeasurings.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(MainActivity.this, R.string.toast_camera_disabled, Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
