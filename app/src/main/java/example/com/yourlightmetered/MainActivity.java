@@ -2,18 +2,23 @@ package example.com.yourlightmetered;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends Activity {
     public static Boolean camera_works = false;
     public static int number_of_cameras = 0;
 
+
+    Button button_start_camera_measurings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,22 @@ public class MainActivity extends Activity {
 
 
         //TODO also we will TEST these sensors on workability
+
+
+
+
+
+
+
+        // here we add listeners
+        button_start_camera_measurings = (Button)findViewById(R.id.button_start_camera_measurings);
+        button_start_camera_measurings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ViewForCameraMeasurings.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

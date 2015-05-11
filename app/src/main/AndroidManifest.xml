@@ -2,28 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="example.com.yourlightmetered" >
 
-
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <activity
-            android:name=".ViewForFrontLightSensor"
-            android:label="@string/app_name" >
-
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
-
-
     <!-- Location to see where the photos were taken -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -32,4 +10,28 @@
         external memory
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     -->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".ViewForFrontLightSensor"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ViewForCameraMeasurings"
+            android:label="@string/title_activity_view_for_camera_mesurings" >
+        </activity>
+    </application>
+
 </manifest>

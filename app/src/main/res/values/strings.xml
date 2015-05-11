@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">YourLightMetered</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Meter Your Light!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_view_for_camera_mesurings">ViewForCameraMeasurings</string>
+
+    <!-- Strings for main activity -->
+    <string name="button_start_mesuring_from_camera">REFLECTED MODE MEASURING</string>
+
+
+
+
 </resources>
