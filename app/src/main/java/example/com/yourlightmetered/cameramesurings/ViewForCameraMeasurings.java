@@ -1,13 +1,15 @@
-package example.com.yourlightmetered;
+package example.com.yourlightmetered.cameramesurings;
 
 import android.app.Activity;
 import android.hardware.Camera;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
+
+import example.com.yourlightmetered.R;
 
 
 public class ViewForCameraMeasurings extends Activity {
@@ -15,7 +17,9 @@ public class ViewForCameraMeasurings extends Activity {
 
     public static int index_camera_open = 0;
 
-    Camera camera;
+    Camera mCamera;
+    private CameraPreview mPreview;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +50,31 @@ public class ViewForCameraMeasurings extends Activity {
         //here we will execute it as a parallel execution (not serial)
         // we use executeOnExecutor instead of execute
 
-        new AsyncTask<Void,Void,Void>(){
+        new AsyncTask<Void,Void, Camera>(){
             @Override
-            protected Void doInBackground(Void ... params) {
-                //get camera instance (first)
-                camera = getCameraInstance(index_camera_open);
+            protected Camera doInBackground(Void ... params) {
+
                 Log.e("open","open");
-                return null;
+
+                //get mCamera instance (first)
+                return getCameraInstance(index_camera_open);
+            }
+
+            @Override
+            protected void onPostExecute(Camera camera) {
+
+                mCamera = camera;
+
+                //add camera to camera preview class
+                mPreview = new CameraPreview(ViewForCameraMeasurings.this, camera);
+
+                // put camera to framelayout
+                FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+                preview.addView(mPreview);
+
             }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null);
+
 
     }
 
@@ -62,9 +82,9 @@ public class ViewForCameraMeasurings extends Activity {
     protected void onPause() {
         super.onPause();
 
-        if(camera!=null) {
+        if(mCamera !=null) {
             Log.e("release","release");
-            camera.release();
+            mCamera.release();
 
         }
 
@@ -80,7 +100,7 @@ public class ViewForCameraMeasurings extends Activity {
         catch (Exception e){
             // Camera is not available (in use or does not exist)
         }
-        return c; // returns null if camera is unavailable
+        return c; // returns null if mCamera is unavailable
     }
 
 

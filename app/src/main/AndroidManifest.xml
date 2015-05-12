@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ViewForCameraMeasurings"
+            android:name=".cameramesurings.ViewForCameraMeasurings"
             android:label="@string/title_activity_view_for_camera_mesurings" >
         </activity>
     </application>
