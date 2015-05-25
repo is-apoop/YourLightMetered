@@ -1,4 +1,4 @@
-package example.com.yourlightmetered;
+package example.com.yourlightmetered.lightsensormeasurings;
 
 import android.app.Activity;
 import android.hardware.Sensor;
@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import example.com.yourlightmetered.Converter;
+import example.com.yourlightmetered.R;
 
 
 public class ViewForFrontLightSensor extends Activity implements SensorEventListener {
@@ -56,6 +59,9 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
     public void onSensorChanged(SensorEvent event) {
         Log.e("asdasd", "light changed");
         mTextView2.setText("Lux: " + String.valueOf(event.values[0]));
+
+
+        double ev = Converter.convertLUXtoEV(event.values[0]);
     }
 
     @Override
