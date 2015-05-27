@@ -76,16 +76,21 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
     ToggleButton mButtonStopPreview;
     TextView mTextSec, mTextFstop, mTextISO, mTextEV;
 
+
+    double ev_global = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_for_light_sensor_measuring);
-
+        final Resources res = getResources();
 
         mButtonFstop = (Button)findViewById(R.id.button_f);
         mButtonISO = (Button)findViewById(R.id.button_iso);
         mButtonSec = (Button)findViewById(R.id.button_sec);
         mButtonStopPreview = (ToggleButton)findViewById(R.id.button_stop_measurings);
+        mButtonSec.setBackgroundColor(res.getColor(R.color.background_button_chosen));
+
 
         mButtonISO.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,14 +99,18 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
                         new AlertDialog.Builder(ViewForFrontLightSensor.this);
 
                 builder.setTitle(R.string.picker_iso);
-                builder.setItems(ISOsStrings, new DialogInterface.OnClickListener(){
+                builder.setItems(ISOsStrings, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // the user clicked on colors[which]
                         ISOposition = which;
+                        calculateEVwithOptions(ev_global);
                     }
                 });
                 builder.show();
+
+                calculateEVwithOptions(ev_global);
+
             }
         });
 
@@ -117,14 +126,16 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
                     public void onClick(DialogInterface dialog, int which) {
                         // the user clicked on colors[which]
                         shutterSpeedPosition = which;
+                        calculateEVwithOptions(ev_global);
                     }
                 });
                 builder.show();
+
             }
 
         });
 
-        final Resources res = getResources();
+
 
         mButtonSec.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -158,9 +169,11 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
                     public void onClick(DialogInterface dialog, int which) {
                         // the user clicked on colors[which]
                         FstopPosition = which;
+                        calculateEVwithOptions(ev_global);
                     }
                 });
                 builder.show();
+
             }
         });
 
@@ -177,8 +190,7 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
         mTextISO = (TextView)findViewById(R.id.text_iso);
         mTextSec = (TextView)findViewById(R.id.text_sec);
 
-
-                mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mLightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
     }
 
@@ -266,7 +278,7 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
         if (!previewIsFreezed){
             // here we convert LUX to EV including ISO given
             double ev = Converter.convertLUXtoEV(event.values[0]) + Math.log(ISO.get(ISOposition)/ 100);
-
+            ev_global = ev;
             calculateEVwithOptions(ev);
 
             mTextEV.setText("Lux: " + String.valueOf(
