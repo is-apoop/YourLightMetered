@@ -133,7 +133,7 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
                 mButtonSec.setBackgroundColor(res.getColor(R.color.background_button_chosen));
                 mButtonFstop.setBackgroundColor(res.getColor(R.color.background_buttons));
                 whatWeCalculateFor = 0;
-                return false;
+                return true;
             }
         });
         mButtonFstop.setOnLongClickListener(new View.OnLongClickListener() {
@@ -142,7 +142,7 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
                 mButtonSec.setBackgroundColor(res.getColor(R.color.background_buttons));
                 mButtonFstop.setBackgroundColor(res.getColor(R.color.background_button_chosen));
                 whatWeCalculateFor = 1;
-                return false;
+                return true;
             }
         });
 

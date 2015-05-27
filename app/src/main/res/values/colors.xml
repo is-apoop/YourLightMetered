@@ -3,7 +3,7 @@
 
     <color name="background_buttons">#e7a0100c</color>
 
-    <color name="background_button_chosen">#e7a07b00</color>
+    <color name="background_button_chosen">#e74ea000</color>
 
     <color name="button_text_color">#ffffff</color>
 </resources>
