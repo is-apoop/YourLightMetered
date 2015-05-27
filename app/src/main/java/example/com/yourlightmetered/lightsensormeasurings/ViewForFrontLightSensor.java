@@ -3,6 +3,7 @@ package example.com.yourlightmetered.lightsensormeasurings;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -29,7 +30,7 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
     private SensorManager mSensorManager;
     private Sensor mLightSensor;
 
-    private TextView mTextView, mTextView2;
+
 
     boolean previewIsFreezed = false;
 
@@ -79,8 +80,6 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_for_light_sensor_measuring);
-        mTextView = (TextView)findViewById(R.id.textView);
-        mTextView2 = (TextView)findViewById(R.id.textView2);
 
 
         mButtonFstop = (Button)findViewById(R.id.button_f);
@@ -113,7 +112,7 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
                 AlertDialog.Builder builder =
                         new AlertDialog.Builder(ViewForFrontLightSensor.this);
                 builder.setTitle(R.string.picker_sec);
-                builder.setItems(ShutterSpeedStrings, new DialogInterface.OnClickListener(){
+                builder.setItems(ShutterSpeedStrings, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // the user clicked on colors[which]
@@ -122,7 +121,31 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
                 });
                 builder.show();
             }
+
         });
+
+        final Resources res = getResources();
+
+        mButtonSec.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                mButtonSec.setBackgroundColor(res.getColor(R.color.background_button_chosen));
+                mButtonFstop.setBackgroundColor(res.getColor(R.color.background_buttons));
+                whatWeCalculateFor = 0;
+                return false;
+            }
+        });
+        mButtonFstop.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mButtonSec.setBackgroundColor(res.getColor(R.color.background_buttons));
+                mButtonFstop.setBackgroundColor(res.getColor(R.color.background_button_chosen));
+                whatWeCalculateFor = 1;
+                return false;
+            }
+        });
+
 
         mButtonFstop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,8 +180,6 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
 
                 mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mLightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-
-        mTextView.setText(mSensorManager.getSensorList(Sensor.TYPE_LIGHT).toString());
     }
 
 
@@ -180,7 +201,7 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
                 calculateForSEC(EV);
             }break;
             case 1:{
-
+                calculateForFstop(EV);
             }break;
             case 2:{
 
