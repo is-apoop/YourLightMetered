@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,9 +31,11 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
 
     private TextView mTextView, mTextView2;
 
+    boolean previewIsFreezed = false;
+
     int ISOposition = 3,
             FstopPosition = 1,
-            shutterSpeedPosition;
+            shutterSpeedPosition = 0;
 
 
     private ArrayList<Integer> ISO =
@@ -68,7 +71,8 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
     */
     int whatWeCalculateFor = 0;
 
-    Button mButtonFstop, mButtonSec, mButtonISO, mButtonStopPreview;
+    Button mButtonFstop, mButtonSec, mButtonISO;
+    ToggleButton mButtonStopPreview;
     TextView mTextSec, mTextFstop, mTextISO, mTextEV;
 
     @Override
@@ -82,7 +86,7 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
         mButtonFstop = (Button)findViewById(R.id.button_f);
         mButtonISO = (Button)findViewById(R.id.button_iso);
         mButtonSec = (Button)findViewById(R.id.button_sec);
-        mButtonStopPreview = (Button)findViewById(R.id.button_stop_measurings);
+        mButtonStopPreview = (ToggleButton)findViewById(R.id.button_stop_measurings);
 
         mButtonISO.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,6 +142,13 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
         });
 
 
+        mButtonStopPreview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                previewIsFreezed = !previewIsFreezed;
+            }
+        });
+
         mTextEV = (TextView)findViewById(R.id.text_ev);
         mTextFstop = (TextView)findViewById(R.id.text_f);
         mTextISO = (TextView)findViewById(R.id.text_iso);
@@ -185,7 +196,17 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
 
         double sec =  Math.pow(Fstop.get(FstopPosition), 2) / Math.pow(2, EV) ;
 
-        mTextSec.setText(Double.toString(sec));
+        //here we will simplify to be one of our values
+
+        double temp = Integer.MAX_VALUE;
+        for (int i = 0 ; i < shutterSpeed.size() ; i++){
+            if (shutterSpeed.get(i) - sec < temp) {
+                temp = Math.sqrt((shutterSpeed.get(i) - sec) * (shutterSpeed.get(i) - sec)) ;
+                shutterSpeedPosition = i;
+            }
+        }
+
+        mTextSec.setText(ShutterSpeedStrings[shutterSpeedPosition]);
 
     }
     void calculateForFstop(double EV){
@@ -199,8 +220,17 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
 
         double Fst =  Math.sqrt((double)shutterSpeed.get(shutterSpeedPosition) * Math.pow(2,EV));
 
-        mTextFstop.setText(Double.toString(Fst));
 
+        double temp = Integer.MAX_VALUE;
+        for (int i = 0 ; i < Fstop.size() ; i++){
+            if (Fstop.get(i) - Fst < temp) {
+                temp = Math.sqrt((Fstop.get(i) - Fst) * (Fstop.get(i) - Fst));
+                FstopPosition = i;
+            }
+        }
+
+
+        mTextFstop.setText(FStopStrings[FstopPosition]);
     }
 
     @Override
@@ -212,13 +242,19 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
     public void onSensorChanged(SensorEvent event) {
         Log.e("asdasd", "light changed");
 
+        if (!previewIsFreezed){
+            // here we convert LUX to EV including ISO given
+            double ev = Converter.convertLUXtoEV(event.values[0]) + Math.log(ISO.get(ISOposition)/ 100);
 
-        // here we convert LUX to EV including ISO given
-        double ev = Converter.convertLUXtoEV(event.values[0]) + Math.log(ISO.get(ISOposition)/ 100);
+            calculateEVwithOptions(ev);
 
-        calculateEVwithOptions(ev);
+            mTextEV.setText("Lux: " + String.valueOf(
+                    String.format("%.0f",event.values[0]) + "\nEV: " +
+                            String.format("%.2f",ev)));
 
-        mTextEV.setText("Lux: " + String.valueOf(event.values[0] + "\nEV: " + ev));
+
+        }
+
     }
 
     @Override

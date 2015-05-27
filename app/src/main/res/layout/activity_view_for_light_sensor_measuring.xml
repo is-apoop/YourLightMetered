@@ -62,12 +62,15 @@
             />
     </LinearLayout>
 
-    <Button
+    <ToggleButton
         style="@style/Text_in_buttons"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text="@string/buton_stop"
+
+        android:textOff="@string/buton_stop_off"
+        android:textOn="@string/buton_stop_on"
+
         android:id="@+id/button_stop_measurings"
         android:layout_weight="1"
         />
