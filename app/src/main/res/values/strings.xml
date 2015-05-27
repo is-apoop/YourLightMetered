@@ -9,7 +9,13 @@
     <!-- Strings for main activity -->
     <string name="button_start_mesuring_from_camera">REFLECTED MODE MEASURING</string>
     <string name="toast_camera_disabled">There is no accessible camera on your device</string>
+    <string name="button_start_light_measuring">INCIDENT MODE MEASURING</string>
 
 
+    <!-- Strings for light meter screen -->
+    <string name="button_For_f">f/</string>
+    <string name="button_for_sec">sec</string>
+    <string name="button_for_iso">iso</string>
+    <string name="button_for_ev">ev</string>
 
 </resources>

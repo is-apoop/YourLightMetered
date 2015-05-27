@@ -6,4 +6,14 @@
 
 
     <dimen name="text_size_for_big_labels">40sp</dimen>
+
+
+    <dimen name="size_text_big_big">70sp</dimen>
+
+    <dimen name="size_text_for_main_menu">50sp</dimen>
+    <dimen name="size_text_explanations">40sp</dimen>
+    <dimen name="size_for_numbers_text">50sp</dimen>
+
+    <dimen name="size_text_for_buttons">30sp</dimen>
+    <dimen name="size_text_for_small_buttons">20sp</dimen>
 </resources>

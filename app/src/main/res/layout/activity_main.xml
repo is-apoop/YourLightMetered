@@ -27,5 +27,17 @@
         android:text="@string/button_start_mesuring_from_camera"
         android:id="@+id/button_start_camera_measurings"/>
 
+    <Button
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_start_light_measuring"
+        android:id="@+id/button_start_light_meter"
+        android:layout_below="@+id/button_start_camera_measurings"
+        android:layout_alignLeft="@+id/button_start_camera_measurings"
+        android:layout_alignStart="@+id/button_start_camera_measurings"
+        android:layout_alignRight="@+id/button_start_camera_measurings"
+        android:layout_alignEnd="@+id/button_start_camera_measurings" />
+
 
 </RelativeLayout>

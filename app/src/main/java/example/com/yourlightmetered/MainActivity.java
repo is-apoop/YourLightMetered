@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import example.com.yourlightmetered.cameramesurings.ViewForCameraMeasurings;
+import example.com.yourlightmetered.lightsensormeasurings.ViewForFrontLightSensor;
 
 
 public class MainActivity extends Activity {
@@ -20,6 +21,8 @@ public class MainActivity extends Activity {
 
 
     Button button_start_camera_measurings;
+    Button button_start_light_sensor_measuring;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,18 @@ public class MainActivity extends Activity {
                     Toast.makeText(MainActivity.this, R.string.toast_camera_disabled, Toast.LENGTH_LONG).show();
                 }
 
+            }
+        });
+
+
+        button_start_light_sensor_measuring = (Button)findViewById(R.id.button_start_light_meter);
+        button_start_light_sensor_measuring.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO check for availability sensor
+                Intent intent = new Intent(MainActivity.this, ViewForFrontLightSensor.class);
+                startActivity(intent);
+                
             }
         });
 

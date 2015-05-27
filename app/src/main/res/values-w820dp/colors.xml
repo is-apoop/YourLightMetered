@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_menu">#009999</color>
+    <color name="buttons__menu">#e137001e</color>
+    <color name="buttons_correct_and_not">#00cccc</color>
+
+    <color name="text_color_numbers_game">#ffb476</color>
+    
+    <color name="Text_in_buttons">#ffffff</color>
+    
+    <color name="Text_in_small_buttons">#ffffff</color>
+
+    <color name="text_for_equations">#ffcc00</color>
+
+    <color name="green">#76ffe1</color>
+    <color name="red">#ff7686</color>
+</resources>

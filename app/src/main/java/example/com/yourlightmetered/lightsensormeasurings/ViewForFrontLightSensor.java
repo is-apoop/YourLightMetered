@@ -26,7 +26,7 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_view);
+        setContentView(R.layout.activity_view_for_light_sensor_measuring);
         mTextView = (TextView)findViewById(R.id.textView);
         mTextView2 = (TextView)findViewById(R.id.textView2);
 
@@ -58,10 +58,12 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
     @Override
     public void onSensorChanged(SensorEvent event) {
         Log.e("asdasd", "light changed");
-        mTextView2.setText("Lux: " + String.valueOf(event.values[0]));
+
 
 
         double ev = Converter.convertLUXtoEV(event.values[0]);
+
+        mTextView2.setText("Lux: " + String.valueOf(event.values[0] + "\nEV: " + ev));
     }
 
     @Override
