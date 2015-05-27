@@ -1,21 +1,21 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <style name="AppTheme" parent="Base.V21.Theme.AppCompat.Light">
         <item name="android:background">#009999</item>
     </style>
 
 
     <style name="Text_in_correct_buttons">
         <item name="android:textSize">@dimen/size_text_for_small_buttons</item>
-        <item name="android:background">@color/buttons_correct_and_not</item>
+       <!-- <item name="android:background">@color/buttons_correct_and_not</item>-->
     </style>
 
     <style name="Text_in_buttons">
         <item name="android:textSize">@dimen/size_text_for_buttons</item>
-        <item name="android:background">#e7a0100c</item>
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:background">@color/background_buttons</item>
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:layout_margin">@dimen/margin_layout</item>
     </style>
 
 </resources>

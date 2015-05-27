@@ -18,4 +18,9 @@
     <string name="button_for_iso">iso</string>
     <string name="buton_stop">FREEZE MEASURING</string>
 
+    <!--  for java code light meter screen -->
+    <string name="picker_iso">Pick ISO:</string>
+    <string name="picker_sec">Pick shutter speed:</string>
+    <string name="picker_f_stop">Pick F stop:</string>
+
 </resources>
