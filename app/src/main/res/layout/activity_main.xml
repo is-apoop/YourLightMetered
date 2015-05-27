@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:id="@+id/main_layout"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -13,11 +13,11 @@
     <TextView android:text="@string/hello_world"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:textSize="@dimen/text_size_for_big_labels"
         android:id="@+id/textGreetingView"/>
 
-    <Button
+    <!--<Button
 
         android:layout_margin="10dp"
         android:padding="20dp"
@@ -38,6 +38,6 @@
         android:layout_alignStart="@+id/button_start_camera_measurings"
         android:layout_alignRight="@+id/button_start_camera_measurings"
         android:layout_alignEnd="@+id/button_start_camera_measurings" />
-
+-->
 
 </RelativeLayout>

@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import example.com.yourlightmetered.cameramesurings.ViewForCameraMeasurings;
@@ -31,6 +32,9 @@ public class MainActivity extends Activity {
 
         // here we will check our device on camera and sensors availability
 
+
+
+        /*
         camera_works = checkCameraHardware(MainActivity.this);
 
 
@@ -68,6 +72,17 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(MainActivity.this, ViewForFrontLightSensor.class);
                 startActivity(intent);
                 
+            }
+        });
+*/
+
+        RelativeLayout mainLayout = (RelativeLayout)findViewById(R.id.main_layout);
+        mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO check for availability sensor
+                Intent intent = new Intent(MainActivity.this, ViewForFrontLightSensor.class);
+                startActivity(intent);
             }
         });
 
