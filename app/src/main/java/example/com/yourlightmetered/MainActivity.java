@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -68,7 +71,7 @@ public class MainActivity extends Activity {
         button_start_light_sensor_measuring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO check for availability sensor
+                //T1ODO check for availability sensor
                 Intent intent = new Intent(MainActivity.this, ViewForFrontLightSensor.class);
                 startActivity(intent);
                 
@@ -80,9 +83,17 @@ public class MainActivity extends Activity {
         mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO check for availability sensor
-                Intent intent = new Intent(MainActivity.this, ViewForFrontLightSensor.class);
-                startActivity(intent);
+                SensorManager mSensorManager =
+                        (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+                if (mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT) == null) {
+                    Toast.makeText(MainActivity.this,R.string.toast_sensor_absent,
+                            Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent intent = new Intent(MainActivity.this, ViewForFrontLightSensor.class);
+                    startActivity(intent);
+                }
+
             }
         });
 

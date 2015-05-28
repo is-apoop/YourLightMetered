@@ -11,6 +11,8 @@
     <string name="toast_camera_disabled">There is no accessible camera on your device</string>
     <string name="button_start_light_measuring">INCIDENT MODE MEASURING</string>
 
+    <string name="toast_sensor_absent">Light sensor is absent!</string>
+
 
     <!-- Strings for light meter screen -->
     <string name="button_For_f">f/</string>

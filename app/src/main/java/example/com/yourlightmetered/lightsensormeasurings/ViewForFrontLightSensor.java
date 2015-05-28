@@ -222,7 +222,7 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
         }
     }
     void calculateForSEC(double EV){
-        //TODO uncomment mTextEV.setText(Double.toString(EV));
+
 
         mTextISO.setText(ISOsStrings[ISOposition]);
         mTextFstop.setText(FStopStrings[FstopPosition]);
@@ -243,7 +243,7 @@ public class ViewForFrontLightSensor extends Activity implements SensorEventList
 
     }
     void calculateForFstop(double EV){
-        //TODO uncomment mTextEV.setText(Double.toString(EV));
+
 
         mTextISO.setText(ISOsStrings[ISOposition]);
         mTextSec.setText(ShutterSpeedStrings[shutterSpeedPosition]);
