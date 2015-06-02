@@ -3,7 +3,7 @@ Brand new robust and productive light meter.
 Allows to do reflected and incident metering, provides additional tools making your light metering experience richer.
 New algorithms designed to identify, calibre, to use the sensors the most accuratelly.
 
-// version 0.1  2.06.2015
+    // version 0.1  2.06.2015
 
 Measurings from front light meter available. App uses the standard light sensor, if available. 
 
@@ -12,17 +12,17 @@ formula to convert them into EV (exposure value). On web pages different tables 
 As a regression was found the function for converstion. The results are described here[1].
 The formula is
 
-  lux = (2 ^ ev) * 2.5;
+    lux = (2 ^ ev) * 2.5;
   
 After some transformations we get the formula:
 
-  ev = Math.log10(0.4 * lux) / Math.log10(2.);
+    ev = Math.log10(0.4 * lux) / Math.log10(2.);
 
 To understand how to operate on these values we need more formulas
 
 Here they are[2]:
 
-EV = log2(N^2/t), 
+    EV = log2(N^2/t), 
 
 where:
 
@@ -36,7 +36,7 @@ Using this formula we find the t and N to use them to relatively calculate our p
 
 To calculate EV correctly we ajust it along with users ISO value, we use the formula from the source[2]
 
-ev = ev + log(ISO/100)
+    ev = ev + log(ISO/100)
 
 
 [1] http://stackoverflow.com/questions/5401738/how-to-convert-between-lux-and-exposure-value
