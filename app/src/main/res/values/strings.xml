@@ -19,7 +19,7 @@
     <string name="button_for_sec">sec</string>
     <string name="button_for_iso">iso</string>
     <string name="buton_stop_off">FREEZE MEASURING</string>
-    <string name="buton_stop_on">REVIEW MEASURING</string>
+    <string name="buton_stop_on">RESUME MEASURING</string>
 
     <!--  for java code light meter screen -->
     <string name="picker_iso">Pick ISO:</string>
